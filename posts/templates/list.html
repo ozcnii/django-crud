@@ -1,0 +1,30 @@
+{% extends './base.html' %} {% block content %}
+<table class="table table-striped" style="width: 100%">
+  <tr>
+    <th>Id</th>
+    <th>Title</th>
+    <th>Text</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  {% for item in object_list %}
+  <tr>
+    <td><strong>{{item.id}}</strong></td>
+    <td><a href="{% url 'posts.detail' item.id %}"> {{item.title}} </a></td>
+    <td>{{item.text |truncatechars:20}}</td>
+    <td>
+      <a href="{% url 'posts.update' item.id %}">
+        <p>update</p>
+      </a>
+    </td>
+    <td>
+      <a href="{% url 'posts.delete' item.id %}">
+        <p>delete</p>
+      </a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+
+{% endblock %}
